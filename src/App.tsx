@@ -6,7 +6,6 @@ import avatar from './assets/image.png';
 import parrot from './assets/detailed-parrot-polyprismatic.svg';
 
 export const App = () => {
-  const arr = [1, 1, 1, 1, 11, 1, 1, , 11, 1];
   return (
     <>
       {' '}
