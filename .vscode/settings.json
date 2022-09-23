@@ -1,11 +1,11 @@
 {
-  // Форматирование кода с помощью prettier
+  // Format code via prettier
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
-  // Форматирование при сохранении файла
+  // Format after saving
   "editor.formatOnSave": true,
 
-  // Использование локальных правил для StyleLint
+  // Use local rules for StyleLint
   "stylelint.useLocal": true,
   "stylelint.autoFixOnSave": true
 }

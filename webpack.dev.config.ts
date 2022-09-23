@@ -13,11 +13,15 @@ interface Configuration extends WebpackConfiguration {
 }
 
 const config: Configuration = {
+  // The mode field tells Webpack whether the app needs to be bundled for production or development
   mode: 'development',
+  // The output.public field tells Webpack what the root path is in the app
   output: {
     publicPath: '/',
   },
+  // The entry field tells Webpack where to start looking for modules to bundle
   entry: './src/index.tsx',
+  // The module field tells Webpack how different modules will be treated
   module: {
     rules: [
       {
@@ -48,29 +52,41 @@ const config: Configuration = {
       },
     ],
   },
+  // The resolve.extensions field tells Webpack what file types to look for in which order during module resolution
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
+
   plugins: [
+    // creates the HTML file
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    //  allow modules to be updated while an application is running, without a full reload
     new HotModuleReplacementPlugin(),
+    // enable the Webpack process to type check the code
     new ForkTsCheckerWebpackPlugin({
       async: false,
     }),
+    // allow use next extensions
     new ESLintPlugin({
       extensions: ['js', 'ts', 'tsx'],
     }),
+    // allow use css, scss
     new MiniCssExtractPlugin(),
+    // allow use .env variables
     new DefinePlugin({
       'process.env': JSON.stringify(dotenv.config().parsed),
     }),
   ],
+  // allows to debug the original code before transpilation
   devtool: 'inline-source-map',
   devServer: {
+    //  the root of the webserver is the build folder
     static: path.join(__dirname, 'build'),
+    //  necessary for deep links to work in multi-page apps
     historyApiFallback: true,
+    // serve files on port
     port: 4000,
     open: true,
     hot: true,

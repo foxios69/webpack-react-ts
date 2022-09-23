@@ -1,11 +1,15 @@
 {
     "presets": [
+      // collection of plugins that allow us to use the latest JavaScript features
       "@babel/preset-env",
+      //  collection of plugins that enable Babel to transform React code into JavaScript
       "@babel/preset-react",
+      //  enables Babel to transform TypeScript code into JavaScript
       "@babel/preset-typescript"
     ],
     "plugins": [
       [
+        //  plugins that allow us to use the async and await JavaScript features
         "@babel/plugin-transform-runtime",
         {
           "regenerator": true

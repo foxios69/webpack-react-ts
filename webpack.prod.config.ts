@@ -5,10 +5,13 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import dotenv from 'dotenv';
+import { DefinePlugin } from 'webpack';
 
 const config: Configuration = {
   mode: 'production',
   entry: './src/index.tsx',
+  // output field tells Webpack where to bundle our code
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[contenthash].js',
@@ -57,8 +60,12 @@ const config: Configuration = {
     new ESLintPlugin({
       extensions: ['js', 'ts', 'tsx'],
     }),
+    //  clear out the build folder at the start of the bundling process.
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
+    new DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed),
+    }),
   ],
 };
 
